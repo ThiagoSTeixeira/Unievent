@@ -10,17 +10,20 @@ def get_events():
         {
             'id': 1,
             'datetime': datetime.today(),
-            'description': 'Event 1'
+            'description': 'Event 1',
+            "imageURL": "event1.jpg"
         },
         {
             'id': 2,
             'date': datetime(2023, 7, 28),
-            'description': 'Event 2'
+            'description': 'Event 2',
+            "imageURL": "event1.jpg"
         },
         {
             'id': 3,
             'date': datetime(2023, 8, 23),
-            'description': 'Event 3'
+            'description': 'Event 3',
+            "imageURL": "event1.jpg"
             
         }
         #... Add more events as needed
