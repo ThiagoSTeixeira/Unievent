@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Event Feed</h1>
+    <div class="event-feed">
+      <EventPost v-for="event in sortedEvents" :key="event.id" :event="event" />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EventPost from './components/EventPost.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    EventPost
+  },
+  data() {
+    return {
+      events: []
+    }
+  },
+  created() {
+    this.fetchEvents()
+  },
+  methods: {
+    fetchEvents() {
+      fetch('http://localhost:5000/api/events') // replace with your API endpoint
+        .then(response => response.json())
+        .then(data => {
+          this.events = data.map(event => ({
+            ...event,
+            date: new Date(Date.parse(event.date || event.datetime))
+          }));
+        });
+    }
+  },
+  computed: {
+    sortedEvents() {
+      return this.events.slice().sort((a, b) => b.date - a.date);
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
