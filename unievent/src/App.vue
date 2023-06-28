@@ -31,7 +31,8 @@ export default {
       this.events = data.map(event => ({
         ...event,
         date: new Date(Date.parse(event.date || event.datetime)),
-        imageURL: require('@/assets/events/' + event.imageURL) // Import the image using require
+        imageURL: require('@/assets/events/' + event.imageURL), 
+        ownerImageURL: require('@/assets/owners/' + event.ownerImageURL) 
       }));
     })
     .catch(error => {
@@ -41,56 +42,50 @@ export default {
 
   },
   computed: {
-    sortedEvents() {
-      return this.events.slice().sort((a, b) => b.date - a.date);
-    }
+  sortedEvents() {
+    return this.events.slice().sort((a, b) => a.date - b.date);
   }
+}
 }
 </script>
 
 <style scoped>
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f8f9fa;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  justify-content: center;
+  height: 100vh;
+  margin: 0 auto;
 }
 
 h1 {
-  color: #343a40;
+  text-align: center;
 }
 
-.event-post {
-  width: 80%;
-  max-width: 600px;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  overflow: hidden;
+.event-card {
+  /* ...other styles... */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.event-post img {
-  width: 100%;
+.event-card img {
+  width: 80%; /* Adjust this to make the image smaller or larger */
+  height: auto; /* This will keep the aspect ratio of the image */
   object-fit: cover;
   border-radius: 15px;
+  max-height: 200px; /* Adjust this to set a maximum height */
 }
 
-.event-post .date {
+.event-card .date {
   font-size: 0.9rem;
   color: #6c757d;
   margin-bottom: 0.5rem;
 }
 
-.event-post .description {
+.event-card .description {
   font-size: 1.1rem;
   color: #343a40;
 }
 </style>
-

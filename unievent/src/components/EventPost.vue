@@ -1,8 +1,15 @@
 <template>
   <div class="event-post">
-    <h2>{{ event.description }}</h2>
-    <p>Date: {{ event.date.toLocaleDateString() }}</p>
-    <img :src="`${event.imageURL}`" alt="Event image" />
+    <div class="owner-info">
+      <img :src="`${event.ownerImageURL}`" alt="Owner image" class="owner-img" />
+      <p>{{ event.owner }}</p>
+    </div>
+    <div class="image-container">
+      <img :src="`${event.imageURL}`" alt="Event image" class="event-img"/>
+    </div>
+    <h2>{{ event.title }}</h2>
+    <p>Date:  {{ event.date.toLocaleDateString() }}</p>
+    <p>{{ event.description }}</p>
   </div>
 </template>
 
@@ -20,31 +27,62 @@ export default {
 
 <style scoped>
 .event-post {
-  background: white;
+  width: 80%;
+  max-width: 600px;
+  max-height: 800px;
   border-radius: 15px;
-  margin: 10px 0;
-  padding: 20px;
-  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.07);
-  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin: 1rem auto;
+  padding: 1rem;
+  overflow: hidden;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  
 }
 
+.owner-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.owner-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.image-container {
+  width: 80%;
+  padding-top: 60%; /* for 4:3 aspect ratio */
+  position: relative;
+}
+
+.event-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+
 .event-post h2 {
-  margin: 10px 0;
-  color: #444;
+  font-size: 1.2rem;
+  color: #343a40;
+  margin-bottom: 0.5rem;
 }
 
 .event-post p {
-  margin: 5px 0;
-  color: #666;
-}
-
-.event-post img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
-  border-radius: 10px;
+  font-size: 1rem;
+  color: #6c757d;
 }
 </style>
