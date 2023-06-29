@@ -1,0 +1,29 @@
+[
+    {
+      "datetime": "Thu, 29 Jun 2023 08:53:38 GMT",
+      "description": "Junte-se a um time multidisciplinar de mulheres universit\u00e1rias cis e trans para propor formas de melhorar a acessibilidade tecnol\u00f3gica na sociedade",
+      "id": 1,
+      "imageURL": "shehacks.png",
+      "owner": "USPCodeLab",
+      "ownerImageURL": "uspcodelab.png",
+      "title": "SheHacks!"
+    },
+    {
+      "date": "Fri, 28 Jul 2023 00:00:00 GMT",
+      "description": "Aulas introdut\u00f3rias sobre programa\u00e7\u00e3o competitiva",
+      "id": 2,
+      "imageURL": "maratonusp.jpg",
+      "owner": "MaratonUSP",
+      "ownerImageURL": "maratonusp.png",
+      "title": "BixeCamp 2023.2"
+    },
+    {
+      "date": "Wed, 23 Aug 2023 00:00:00 GMT",
+      "description": "this is a test description for this event, blabla",
+      "id": 3,
+      "imageURL": "event1.jpg",
+      "owner": "IMESec",
+      "ownerImageURL": "imesec.jpg",
+      "title": "Event 3"
+    }
+  ]

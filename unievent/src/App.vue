@@ -2,13 +2,19 @@
   <div id="app">
     <div class="navbar">
       <img src="@/assets/logo.png" alt="Logo" class="logo"/>
-      <input type="text" placeholder="Search..." class="search"/>
-      <div class="buttons">
-        <button class="btn login" @click="handleLogin">Log In</button>
+      <input type="text" placeholder="Search..." :class="['search', isLoggedIn ? 'search-logged-in' : 'search-logged-out']"/>
+      <div class="buttons" v-if="!isLoggedIn">
+        <button class="btn login" @click="showLoginModel">Log In</button>
         <button class="btn join" @click="handleJoin">Join</button>
+      </div>
+      <div class="user-section" v-else>
+        <button class="btn create-event" @click="showCreateEventModal">Create Event</button>
+        <img class="user-profile" src="@/assets/owners/uspcodelab.png" alt="User Profile">
+      </div>
+      <LoginModel ref="LoginModel" @login-success="handleLoginSuccess" />
+      <CreateEventModal ref="CreateEventModal" />
     </div>
-  </div>
-
+    
     <h1 class="title">Event Feed</h1>
     <div class="event-feed">
       <EventPost v-for="event in sortedEvents" :key="event.id" :event="event" />
@@ -18,21 +24,39 @@
 
 <script>
 import EventPost from './components/EventPost.vue';
+import LoginModel from './components/LoginModel.vue';
+import CreateEventModal from './components/CreateEventModal.vue';
 
 export default {
   name: 'App',
   components: {
-    EventPost
+    EventPost,
+    LoginModel,
+    CreateEventModal,
   },
   data() {
     return {
-      events: []
+      events: [],
+      isLoggedIn: false
     }
   },
   created() {
     this.fetchEvents()
   },
   methods: {
+    handleJoin() {
+      // handle join logic here
+      console.log('Join button clicked');
+    },
+    showLoginModel() {
+      this.$refs.LoginModel.showLoginModel();
+    },
+    handleLoginSuccess() {
+      this.isLoggedIn = true;
+    },
+    showCreateEventModal() {
+      this.$refs.CreateEventModal.showCreateEventModal();
+    },
     fetchEvents() {
       fetch('http://localhost:5000/api/events') // replace with your API endpoint
       .then(response => response.json())
@@ -125,7 +149,6 @@ h1 {
 }
 
 .search {
-  flex-grow: 1;
   margin: 0 1em;
   padding: 0.5em;
   border: none;
@@ -134,8 +157,17 @@ h1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.search-logged-out {
+  flex-grow: 1;
+}
+
+.search-logged-in {
+  flex-grow: 0.95; /* adjust this as needed */
+}
+
 .buttons {
   display: flex;
+  align-items: center;
   gap: 1em;
 }
 
@@ -160,9 +192,26 @@ h1 {
 .btn.login:hover {
   background-color: #5a6268;
 }
-
+.btn.create-event {
+  background-color: #54bb00;
+}
 body {
   padding-top: 50px;  /* Height of the navbar, adjust as needed */
 }
+
+.user-profile {
+  width: 40px;   /* Adjust the size as needed */
+  height: 40px;  /* Adjust the size as needed */
+  border-radius: 50%;  /* Makes the image circular */
+  object-fit: cover;   /* Makes the image cover the entire element without distortion */
+  margin-left: 10px;   /* Optional: Add some space between the button and the image */
+}
+
+.user-section {
+  display: flex;
+  align-items: center;  /* This will vertically align the contents within the user-section */
+  gap: 1em;
+}
+
 
 </style>
