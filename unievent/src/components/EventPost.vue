@@ -41,7 +41,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
-  
+
 }
 
 .owner-info {

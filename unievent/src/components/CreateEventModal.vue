@@ -4,22 +4,22 @@
         <h2>Create Event</h2>
         <label for="event-title">Event Title:</label>
         <input id="event-title" type="text" v-model="event.title">
-        
+
         <label for="event-datetime">Event Date & Time:</label>
         <input id="event-datetime" type="datetime-local" v-model="event.datetime">
-        
+
         <label for="event-description">Event Description:</label>
         <textarea id="event-description" v-model="event.description"></textarea>
-        
+
         <label for="event-image">Event Image:</label>
         <input id="event-image" type="file" @change="handleFileChange">
-        
+
         <button @click="handleCreateEvent">Submit</button>
         <button @click="isCreateEventModalShown = false">Close</button>
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     data() {
@@ -41,15 +41,12 @@
         this.event.imageFile = event.target.files[0];
       },
       handleCreateEvent() {
-        // handle your event creation logic here
-        // remember to set isCreateEventModalShown = false when event creation is successful to close the modal.
-        // and also reset the event object to clear the form inputs
         console.log(this.event);
       }
     }
   }
   </script>
-  
+
   <style scoped>
 .create-event-modal {
   display: flex;
@@ -61,8 +58,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-  transition: all 0.3s ease-in-out; /* makes modal appearance smooth */
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
 .create-event-modal-content {
@@ -71,9 +68,9 @@
   max-width: 500px;
   width: 80%;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* shadow for 3D effect */
-  text-align: center; /* centers the text */
-  animation: slide 0.3s ease-in-out; /* for a smooth sliding effect */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slide 0.3s ease-in-out;
 }
 
 @keyframes slide {
@@ -115,4 +112,4 @@
 .create-event-modal-content button:hover {
   background-color: #0056b3;
 }
-</style>  
+</style>

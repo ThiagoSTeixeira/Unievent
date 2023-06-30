@@ -11,7 +11,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     data() {
@@ -39,7 +39,7 @@
         })
         .then(response => {
             if (response.ok) {
-                this.$emit('login-success');  
+                this.$emit('login-success');
                 this.isLoginModelShown = false;
                 return response.json();
             } else {
@@ -58,7 +58,7 @@
     }
   }
   </script>
-  
+
   <style scoped>
   .login-model {
     position: fixed;
@@ -70,7 +70,7 @@
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
   }
-  
+
   .login-model-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -80,22 +80,22 @@
     max-width: 500px;
     border-radius: 15px;
   }
-  
+
   .login-model-content h2 {
     margin-top: 0;
   }
-  
+
   .login-model-content label {
     display: block;
     margin: 0.5em 0;
   }
-  
+
   .login-model-content input {
     width: 100%;
     padding: 0.5em;
     margin-bottom: 1em;
   }
-  
+
   .login-model-content button {
     background-color: #4CAF50;
     color: white;
@@ -106,10 +106,9 @@
     width: 100%;
     border-radius: 4px;
   }
-  
+
   .login-model-content button:hover {
     opacity: 0.8;
   }
   </style>
-  
-  
+
